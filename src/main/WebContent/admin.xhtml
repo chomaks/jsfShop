@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <!--<h:outputStylesheet name="css/stylesTest.css"/>-->
+</h:head>
+
+<h:body style="font-family: sans-serif; padding: 40px; color: #5f5f5f; width: 60%; margin: 0 auto;">
+
+    <header>
+        <hgroup>
+            <h1 style=""> <h:outputText value="Header"/> HS-OWL Onlineshop</h1>
+        </hgroup>
+        <nav style="text-decoration: none;">
+            <p:link outcome="index" value="Home" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:link outcome="registrieren" value="Registrieren" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:link outcome="login" value="Login" style="text-decoration: none; color: dimgray; "/>
+        </nav>
+    </header>
+
+    <h2 style="margin-top: 7%"><h:outputText value="Admin"/></h2>
+    <p:messages id="messages" />
+
+    <h:form id="form" enctype="multipart/form-data" >
+        <h:panelGrid id="grid" columns="1" style="margin-top: 1%; margin-bottom: 1%">
+            <p:inputTextarea id="title" required="true" requiredMessage="Titel wird benötigt" maxlength="20" rows="1" value="#{adminController.title}"
+                             style="width: 100%"/>
+            <p:watermark for="title" value="Titel"/>
+            <p:inputTextarea id="description" required="true" requiredMessage="Beschreibung wird benötigt" maxlength="80" rows="2" value="#{adminController.description}"
+                             style="width: 100%"/>
+            <p:watermark for="description" value="Beschreibung"/>
+            <!--<p:inputMask id="price" required="false" requiredMessage="Preis wird benötigt" mask="99999.99" value="#{adminController.price}"-->
+                         <!--style="width: 100%"/>-->
+            <pe:inputNumber id="price" required="true" requiredMessage="Preis wird benötigt" symbol="€" symbolPosition="s" value="#{adminController.price}"/>
+            <p:watermark for="price" value="bsp.: 5,75"/>
+        </h:panelGrid>
+        <p:commandButton value="Produkt anlegen" actionListener="#{adminController.save}" update="messages" style="margin-bottom: 7%"/>
+    </h:form>
+
+    <footer>
+        <h:outputText value="footer"/>
+    </footer>
+</h:body>
+</html>

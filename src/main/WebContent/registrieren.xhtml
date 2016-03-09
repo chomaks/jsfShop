@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <!--<h:outputStylesheet name="css/stylesTest.css"/>-->
+</h:head>
+
+<h:body style="font-family: sans-serif; padding: 40px; color: #5f5f5f; width: 60%; margin: 0 auto">
+
+    <header>
+        <hgroup>
+            <h1 style=""> <h:outputText value="Header"/> HS-OWL Onlineshop</h1>
+        </hgroup>
+        <nav style="text-decoration: none;">
+            <p:link outcome="index" value="Home" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:link outcome="registrieren" value="Registrieren" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:link outcome="login" value="Login" style="text-decoration: none; color: dimgray; "/>
+            <p:outputLabel value="#{customerLoginController.firstName}" style="color: dimgray; float: right; margin-right: 0.5%"></p:outputLabel>
+            <br/>
+            <p:commandButton value="Warenkorb" icon="ui-icon-cart" rendered="#{not empty customerLoginController.password}"
+                             style="color: dimgray; float: right; text-decoration: none; background: none; margin-top: 0.5%" />
+        </nav>
+    </header>
+
+        <h2 style="margin-top: 7%"><p:outputLabel value="Registrieren"/></h2>
+        <p:messages id="messages" />
+
+        <h:form id="form">
+            <h:panelGrid id="grid" columns="1" style="margin-top: 1%; margin-bottom: 1%">
+                <p:inputText id="firstName" required="true" requiredMessage="Vorname wird benötigt" value="#{customerRegistrationController.firstName}"/>
+                <p:watermark for="firstName" value="Vorname"/>
+                <p:password id="password" required="true" requiredMessage="Password wird benötigt" value="#{customerRegistrationController.password}"/>
+                <p:watermark for="password" value="Passwort"/>
+            </h:panelGrid>
+            <p:commandButton value="Registrieren" actionListener="#{customerRegistrationController.save}" update="messages, password" style="margin-bottom: 7%"/>
+        </h:form>
+
+    <footer>
+        <h:outputText value="footer"/>
+    </footer>
+</h:body>
+</html>

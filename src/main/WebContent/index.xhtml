@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <!--<h:outputStylesheet name="css/stylesTest.css"/>-->
+</h:head>
+
+<h:body style="font-family: sans-serif; padding: 40px; color: #5f5f5f; width: 60%; margin: 0 auto;">
+
+    <header>
+        <hgroup>
+            <h1 style=""> <h:outputText value="Header"/> HS-OWL Onlineshop</h1>
+        </hgroup>
+        <nav style="text-decoration: none;">
+            <p:link outcome="index" value="Home" style="text-decoration: none; color: dimgray; margin-right: 2%; icon: ui-icon-home"/>
+            <p:link outcome="registrieren" value="Registrieren" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:link outcome="login" value="Login" style="text-decoration: none; color: dimgray; margin-right: 2% "/>
+            <p:outputLabel value="#{customerLoginController.firstName}" style="color: dimgray; float: right; margin-right: 0.5%"></p:outputLabel>
+            <br/>
+            <p:commandButton id="korb" value="Warenkorb #{shoppingCardController.amountOne}" icon="ui-icon-cart"
+                             update="korb, titel, price, sum, messages" rendered="#{not empty customerLoginController.password}" action="#{shoppingCardController.shoppingCardCanDisplayAmountListItemAndSum}"
+                             onclick="PF('dlg').show();"
+                             style="color: dimgray; float: right; text-decoration: none; background: none; margin-top: 0.5%"/>
+            <p:dialog header="Warenkorb" widgetVar="dlg" modal="true" height="auto%" width="40%">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Titel:">
+                        <br></br>
+                        <h:outputText id="titel" value="#{shoppingCardController.titelList}"/>
+                    </h:outputLabel>
+                    <h:outputLabel value="Preis:">
+                        <br></br>
+                        <h:outputText id="price" value="#{shoppingCardController.priceList}"/>
+                    </h:outputLabel>
+                    <h:outputText value="Gesamtsumme: "/>
+                    <h:outputText id="sum" value="Eur #{shoppingCardController.sumOne}" />
+                </p:panelGrid>
+                <p:commandButton value="Bestellung abschließen" action="#{shoppingCardController.deleteRowsInShoppingCardAfterOrder}" update="korb, titel, price, sum, messages"/>
+                <p:commandButton value="Warenkorb löschen" action="#{shoppingCardController.deleteRowsInShoppingCardAfterDelete}" update="korb, titel, price, sum, messages"/>
+                <p:messages id="messages" />
+            </p:dialog>
+
+        </nav>
+    </header>
+
+    <h2 style="margin-top: 7%"><h:outputText value="HS-OWL Onlineshop"/></h2>
+
+    <h:form>
+       <h4 style="margin-top: 4%"><h:outputText value="Software für die Textbearbeitung"/></h4>
+       <p:panelGrid columns="3" style="width: 100%; margin-bottom: 7%;" styleClass="ui-noborder" >
+           <p:outputPanel>
+               <h:panelGrid columns="1" cellpadding="5" style="width: 100%;" >
+                   <p:graphicImage value="#{resource['img:aa.png']}"/>
+                   <p:outputLabel value="Titel: Word-2020 Students"/>
+                   <p:outputLabel value="Beschreibung: Das Word der Zukunft, für Studenten schon heute erhältlich!"/>
+                   <p:outputLabel value="Preis: 123.45 €"/>
+                   <p:panelGrid columns="2">
+                       <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWord2020}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                       <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWord2020}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                   </p:panelGrid>
+               </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:aa2.png']}"/>
+                    <p:outputLabel value="Titel: Word-Lite"/>
+                    <p:outputLabel value="Beschreibung: Die weniger umfangreiche Version für wenig Geld"/>
+                    <p:outputLabel value="Preis: 12.34 €"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWordLite}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWordLite}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:aa3.png']}"/>
+                    <p:outputLabel value="Titel: Word 2010 standard"/>
+                    <p:outputLabel value="Beschreibung: Die Standard-Version der bekannten Version 2010"/>
+                    <p:outputLabel value="Preis: 123.00 €"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWord2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWord2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+        </p:panelGrid>
+    </h:form>
+
+    <!--bildbearbeitung-->
+    <h:form>
+        <h4 style="margin-top: 3%"><h:outputText value="Software für die Bildbearbeitung"/></h4>
+        <p:panelGrid columns="3" style="width: 100%; margin-bottom: 7%" styleClass="ui-noborder" >
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:bb2.png']}"/>
+                    <p:outputLabel value="Titel: Bildbearbeitung 2015"/>
+                    <p:outputLabel value="Beschreibung: Hiermiet können Sie alles bearbeiten"/>
+                    <p:outputLabel value="Preis: 100"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:bb.png']}"/>
+                    <p:outputLabel value="Titel: Bildbearbeitung 2013"/>
+                    <p:outputLabel value="Beschreibung: Hiermit können Sie fast alles bearbeiten"/>
+                    <p:outputLabel value="Preis: 50"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2013}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2013}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:bb3.png']}"/>
+                    <p:outputLabel value="Titel: Bildbearbeitung 2010"/>
+                    <p:outputLabel value="Beschreibung: Hiermit können Sie nicht ganz so viel bearbeiten"/>
+                    <p:outputLabel value="Preis: 25"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+        </p:panelGrid>
+    </h:form>
+
+    <h:form>
+        <h4 style="margin-top: 3%"><h:outputText value="Software für den Alltag"/></h4>
+        <p:panelGrid columns="3" style="width: 100%; margin-bottom: 7%" styleClass="ui-noborder" >
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:c.png']}"/>
+                    <p:outputLabel value="Titel: SoFüAl 2015"/>
+                    <p:outputLabel value="Beschreibung: Diese Software ist so nützlich wie ein schweizer Taschenmesser"/>
+                    <p:outputLabel value="Preis: 500"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buySoFüAl2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentSoFüAl2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:c2.png']}"/>
+                    <p:outputLabel value="Titel: Steuerprüfer 2015"/>
+                    <p:outputLabel value="Beschreibung: Mit dieser Software erledigen Sie Ihre Steuerprüfung in 0,nix"/>
+                    <p:outputLabel value="Preis: 250"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buySteuerprüfer2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentSteuerprüfer2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:graphicImage value="#{resource['img:c3.png']}"/>
+                    <p:outputLabel value="Titel: Zirkus-Direktor-Symolator"/>
+                    <p:outputLabel value="Beschreibung: Sie wollten schon immer einmal ein Zirkusdirektor sein?"/>
+                    <p:outputLabel value="Preis: 30 €"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buyZirkusDirektor}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentZirkusDirektor}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:outputPanel>
+        </p:panelGrid>
+    </h:form>
+
+    <footer>
+        <h:outputText value="footer" style="margin-top: 7%"/>
+    </footer>
+</h:body>
+</html>
