@@ -1,5 +1,6 @@
 package de.hsowl.controller;
 
+import de.hsowl.model.AdminCreateItemRepository;
 import de.hsowl.model.CustomerRepository;
 import de.hsowl.model.ShoppingCardRepository;
 
@@ -7,7 +8,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 
 
 @ManagedBean
@@ -18,6 +21,7 @@ public class CustomerLoginController implements Serializable {
     private String password;
     private CustomerRepository customerRepository = new CustomerRepository();
     private ShoppingCardRepository shoppingCardRepository = new ShoppingCardRepository();
+    private AdminCreateItemRepository adminCreateItemRepository = new AdminCreateItemRepository();
 
     public String getFirstName() {
         return firstName;
@@ -35,17 +39,18 @@ public class CustomerLoginController implements Serializable {
         this.password = password;
     }
 
-    public String loginValidationOfUsernameAndPassword(){
+    public String loginValidationOfUsernameAndPassword() throws IOException, SQLException {
 
         //try to login as admin
         if (firstName.equals("admin") && password.equals("admin")){
+            adminCreateItemRepository.createNewDatabaseItems();
             return "admin.xhtml";
         }else{
             //try to login as normal shopping user
             try {
                 customerRepository.login(firstName, password);
-                shoppingCardRepository.createNewDatabase(firstName);
                 shoppingCardRepository.insertNameInTable(firstName);
+                shoppingCardRepository.createNewDatabaseForCustomerShoppingCard(firstName);
 //                shoppingCardRepository.deleteCustomerGetTableName();
 //                shoppingCardRepository.customergGetTableName(firstName);
 

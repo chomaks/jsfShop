@@ -1,6 +1,9 @@
 package de.hsowl.model;
 
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +18,9 @@ public class CustomerRepository {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM CUSTOMER" );
 
         while ( resultSet.next()) {
-            String id = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            String password = resultSet.getString(3);
-            System.out.println(id + ", " + name + ", " + password);
+            String name = resultSet.getString(1);
+            String password = resultSet.getString(2);
+            System.out.println(name + ", " + password);
         }
 
         resultSet.close();
@@ -61,6 +63,15 @@ public class CustomerRepository {
         }else {
             throw new Exception("");
         }
+    }
+
+    public void createNewDatabaseCustomer() throws SQLException, IOException {
+
+        PreparedStatement preparedStatement = DbConnection.getInstance().con.prepareStatement
+                ("CREATE TABLE IF NOT EXISTS PUBLIC.CUSTOMER(NAME VARCHAR(20), PASSWORD VARCHAR(20))");
+
+        int i = preparedStatement.executeUpdate();
+        System.out.println("CustomerTable could be created");
     }
 }
 

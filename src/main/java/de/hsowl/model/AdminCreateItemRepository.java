@@ -85,6 +85,15 @@ public class AdminCreateItemRepository {
         statement.close();
     }
 
+    public void createNewDatabaseItems() throws SQLException, IOException {
+
+        PreparedStatement preparedStatement = DbConnection.getInstance().con.prepareStatement
+                ("CREATE TABLE IF NOT EXISTS PUBLIC.ITEMS (TITLE VARCHAR(20), DESCRIPTION VARCHAR(80), PRICE DOUBLE)");
+
+        int i = preparedStatement.executeUpdate();
+        System.out.println("ItemTable could be created");
+    }
+
 
 }
 

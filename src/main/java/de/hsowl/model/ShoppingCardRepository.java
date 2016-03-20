@@ -15,7 +15,7 @@ public class ShoppingCardRepository {
     String nameOne = null;
 
     //create a shoppingcard with a unique tablename for every user wich include the username
-    public void createNewDatabase(String firstName) throws SQLException, IOException {
+    public void createNewDatabaseForCustomerShoppingCard(String firstName) throws SQLException, IOException {
 
         PreparedStatement preparedStatement = DbConnection.getInstance().con.prepareStatement
                 ("CREATE TABLE IF NOT EXISTS PUBLIC.ShoppingCard_"+ firstName + "(TITLE VARCHAR(32), AMOUNT INT, PRICE DOUBLE)");
@@ -24,9 +24,19 @@ public class ShoppingCardRepository {
         System.out.println("shoppingCard could be created");
     }
 
+    public void createNewDatabaseFirstNameTable() throws SQLException, IOException {
+
+        PreparedStatement preparedStatement = DbConnection.getInstance().con.prepareStatement
+                ("CREATE TABLE IF NOT EXISTS PUBLIC.FIRSTNAMETABLE(NAME VARCHAR(32))");
+
+        int i = preparedStatement.executeUpdate();
+        System.out.println("FirstnameTable could be created");
+    }
+
+
     public void insertNameInTable(String firstName) throws SQLException {
 
-        PreparedStatement preparedStatement =  DbConnection.getInstance().con.prepareStatement("INSERT INTO FISRSTNAMETABLE (NAME) VALUES (?)");
+        PreparedStatement preparedStatement =  DbConnection.getInstance().con.prepareStatement("INSERT INTO FIRSTNAMETABLE (NAME) VALUES (?)");
         preparedStatement.setString(1, firstName);
 
         int i = preparedStatement.executeUpdate();
@@ -42,7 +52,7 @@ public class ShoppingCardRepository {
     public void buyItemWord2020() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -72,7 +82,7 @@ public class ShoppingCardRepository {
     public void lentItemWord2020() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -103,7 +113,7 @@ public class ShoppingCardRepository {
     public void buyItemWordLite() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -133,7 +143,7 @@ public class ShoppingCardRepository {
     public void lentItemWordLite() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -164,7 +174,7 @@ public class ShoppingCardRepository {
     public void buyItemWord2010() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -194,7 +204,7 @@ public class ShoppingCardRepository {
     public void lentItemWord2010() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -226,7 +236,7 @@ public class ShoppingCardRepository {
     public void buyItemBildbearbeitung2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -256,7 +266,7 @@ public class ShoppingCardRepository {
     public void lentItemBildbearbeitung2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -287,7 +297,7 @@ public class ShoppingCardRepository {
     public void buyItemBildbearbeitung2013() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -317,7 +327,7 @@ public class ShoppingCardRepository {
     public void lentItemBildbearbeitung2013() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -348,7 +358,7 @@ public class ShoppingCardRepository {
     public void buyItemBildbearbeitung2010() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -378,7 +388,7 @@ public class ShoppingCardRepository {
     public void lentItemBildbearbeitung2010() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -410,7 +420,7 @@ public class ShoppingCardRepository {
     public void buyItemSoFüAl2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -440,7 +450,7 @@ public class ShoppingCardRepository {
     public void lentItemSoFüAl2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -471,7 +481,7 @@ public class ShoppingCardRepository {
     public void buyItemSteuerprüfer2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -501,7 +511,7 @@ public class ShoppingCardRepository {
     public void lentItemSteuerprüfer2015() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -532,7 +542,7 @@ public class ShoppingCardRepository {
     public void buyItemZirkusDirektorSymolator() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -562,7 +572,7 @@ public class ShoppingCardRepository {
     public void lentItemZirkusDirektorSymolator() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);

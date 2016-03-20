@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 
@@ -62,5 +63,10 @@ public class AdminController implements Serializable {
         }
 
         adminCreateItemRepository.printItems();
+    }
+
+    public void createItemDatabase() throws IOException, SQLException {
+
+        adminCreateItemRepository.createNewDatabaseItems();
     }
 }

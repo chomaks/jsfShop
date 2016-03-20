@@ -19,7 +19,7 @@
         </hgroup>
         <nav style="text-decoration: none;">
             <p:link outcome="index" value="Home" style="text-decoration: none; color: dimgray; margin-right: 2%; icon: ui-icon-home"/>
-            <p:link outcome="registrieren" value="Registrieren" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
+            <p:commandLink value="Registrieren" action="#{customerRegistrationController.createCustomerDatabase}" style="text-decoration: none; color: dimgray; margin-right: 2%"/>
             <p:link outcome="login" value="Login" style="text-decoration: none; color: dimgray; margin-right: 2% "/>
             <p:outputLabel value="#{customerLoginController.firstName}" style="color: dimgray; float: right; margin-right: 0.5%"></p:outputLabel>
             <br/>
@@ -58,7 +58,8 @@
                    <p:graphicImage value="#{resource['img:aa.png']}"/>
                    <p:outputLabel value="Titel: Word-2020 Students"/>
                    <p:outputLabel value="Beschreibung: Das Word der Zukunft, für Studenten schon heute erhältlich!"/>
-                   <p:outputLabel value="Preis: 123.45 €"/>
+                   <p:outputLabel value="Kaufen/Preis: 123.45 €"/>
+                   <p:outputLabel value="Ausleihen/Preis: 1.50 €"/>
                    <p:panelGrid columns="2">
                        <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWord2020}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                        <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWord2020}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -70,7 +71,8 @@
                     <p:graphicImage value="#{resource['img:aa2.png']}"/>
                     <p:outputLabel value="Titel: Word-Lite"/>
                     <p:outputLabel value="Beschreibung: Die weniger umfangreiche Version für wenig Geld"/>
-                    <p:outputLabel value="Preis: 12.34 €"/>
+                    <p:outputLabel value="Kaufen/Preis: 12.34 €"/>
+                    <p:outputLabel value="Ausleihen/Preis: 0.50 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWordLite}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWordLite}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -82,7 +84,8 @@
                     <p:graphicImage value="#{resource['img:aa3.png']}"/>
                     <p:outputLabel value="Titel: Word 2010 standard"/>
                     <p:outputLabel value="Beschreibung: Die Standard-Version der bekannten Version 2010"/>
-                    <p:outputLabel value="Preis: 123.00 €"/>
+                    <p:outputLabel value="Kaufen/Preis: 123.00 €"/>
+                    <p:outputLabel value="Ausleihen/Preis: 2.15 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buydWord2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentWord2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -101,7 +104,8 @@
                     <p:graphicImage value="#{resource['img:bb2.png']}"/>
                     <p:outputLabel value="Titel: Bildbearbeitung 2015"/>
                     <p:outputLabel value="Beschreibung: Hiermiet können Sie alles bearbeiten"/>
-                    <p:outputLabel value="Preis: 100"/>
+                    <p:outputLabel value="Kaufen/Preis: 100"/>
+                    <p:outputLabel value="Ausleihen/Preis: 1.00 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -113,7 +117,8 @@
                     <p:graphicImage value="#{resource['img:bb.png']}"/>
                     <p:outputLabel value="Titel: Bildbearbeitung 2013"/>
                     <p:outputLabel value="Beschreibung: Hiermit können Sie fast alles bearbeiten"/>
-                    <p:outputLabel value="Preis: 50"/>
+                    <p:outputLabel value="Kaufen/Preis: 50"/>
+                    <p:outputLabel value="Ausleihen/Preis: 0.50 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2013}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2013}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -125,7 +130,8 @@
                     <p:graphicImage value="#{resource['img:bb3.png']}"/>
                     <p:outputLabel value="Titel: Bildbearbeitung 2010"/>
                     <p:outputLabel value="Beschreibung: Hiermit können Sie nicht ganz so viel bearbeiten"/>
-                    <p:outputLabel value="Preis: 25"/>
+                    <p:outputLabel value="Kaufen/Preis: 25"/>
+                    <p:outputLabel value="Ausleihen/Preis: 0.25 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buyBildbearbeitung2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentBildbearbeitung2010}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -143,7 +149,8 @@
                     <p:graphicImage value="#{resource['img:c.png']}"/>
                     <p:outputLabel value="Titel: SoFüAl 2015"/>
                     <p:outputLabel value="Beschreibung: Diese Software ist so nützlich wie ein schweizer Taschenmesser"/>
-                    <p:outputLabel value="Preis: 500"/>
+                    <p:outputLabel value="Kaufen/Preis: 500"/>
+                    <p:outputLabel value="Ausleihen/Preis: 5.00 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buySoFüAl2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentSoFüAl2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -155,7 +162,8 @@
                     <p:graphicImage value="#{resource['img:c2.png']}"/>
                     <p:outputLabel value="Titel: Steuerprüfer 2015"/>
                     <p:outputLabel value="Beschreibung: Mit dieser Software erledigen Sie Ihre Steuerprüfung in 0,nix"/>
-                    <p:outputLabel value="Preis: 250"/>
+                    <p:outputLabel value="Kaufen/Preis: 250"/>
+                    <p:outputLabel value="Ausleihen/Preis: 5.50 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buySteuerprüfer2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentSteuerprüfer2015}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
@@ -167,7 +175,8 @@
                     <p:graphicImage value="#{resource['img:c3.png']}"/>
                     <p:outputLabel value="Titel: Zirkus-Direktor-Symolator"/>
                     <p:outputLabel value="Beschreibung: Sie wollten schon immer einmal ein Zirkusdirektor sein?"/>
-                    <p:outputLabel value="Preis: 30 €"/>
+                    <p:outputLabel value="Kaufen/Preis: 30 €"/>
+                    <p:outputLabel value="Ausleihen/Preis: 0.80 €"/>
                     <p:panelGrid columns="2">
                         <p:commandButton value="Kaufen" action="#{shoppingCardController.buyZirkusDirektor}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />
                         <p:commandButton value="Ausleihen" action="#{shoppingCardController.lentZirkusDirektor}" update="korb, messages" rendered="#{not empty customerLoginController.password}" />

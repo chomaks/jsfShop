@@ -51,7 +51,7 @@ public class ShoppingCardController implements Serializable{
     public void shoppingCardCanDisplayAmountListItemAndSum() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -85,7 +85,7 @@ public class ShoppingCardController implements Serializable{
     public void deleteRowsInShoppingCardAfterOrder() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -110,7 +110,7 @@ public class ShoppingCardController implements Serializable{
     public void deleteRowsInShoppingCardAfterDelete() throws SQLException {
 
         Statement statement = DbConnection.getInstance().con.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 
         while ( resultSet.next()) {
             String name = resultSet.getString(1);
@@ -136,7 +136,7 @@ public class ShoppingCardController implements Serializable{
 //    public void listItems() throws SQLException {
 //
 //        Statement statement = DbConnection.getInstance().con.createStatement();
-//        ResultSet resultSet = statement.executeQuery("SELECT * FROM FISRSTNAMETABLE" );
+//        ResultSet resultSet = statement.executeQuery("SELECT * FROM FIRSTNAMETABLE" );
 //
 //        while ( resultSet.next()) {
 //            String name = resultSet.getString(1);
